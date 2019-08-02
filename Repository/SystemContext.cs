@@ -12,6 +12,10 @@ namespace Repository
         {
         }
 
+        public SystemContext(DbContextOptions<SystemContext> options) : base(options)
+        {
+        }
+
         public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<Cliente> Clientes { get; set; }

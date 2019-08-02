@@ -27,7 +27,7 @@ namespace Repository.Repositories{
             throw new NotImplementedException();
         }
 
-        public List<Cliente> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string coluna)
+        public List<Cliente> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string ordem)
         {
             throw new NotImplementedException();
         }

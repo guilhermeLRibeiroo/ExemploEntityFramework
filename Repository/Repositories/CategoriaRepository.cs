@@ -30,6 +30,7 @@ namespace Repository.Repositories
                 return false;
 
             categoria.RegistroAtivo = false;
+
             context.Categorias.Update(categoria);
 
             return context.SaveChanges() == 1;
@@ -37,6 +38,7 @@ namespace Repository.Repositories
 
         public int Inserir(Categoria categoria)
         {
+            categoria.RegistroAtivo = true;
             context.Categorias.Add(categoria);
             context.SaveChanges();
             return categoria.Id;

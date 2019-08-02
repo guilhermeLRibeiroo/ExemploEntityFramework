@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Repository.Interfaces
 {
-    interface IClienteRepository
+    public interface IClienteRepository
     {
         int Inserir(Cliente cliente);
 

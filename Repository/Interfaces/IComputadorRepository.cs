@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Repository.Interfaces
 {
-    interface IComputadorRepository
+    public interface IComputadorRepository
     {
         int Inserir(Computador computador);
 
