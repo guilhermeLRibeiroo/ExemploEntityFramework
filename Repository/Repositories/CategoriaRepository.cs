@@ -18,6 +18,7 @@ namespace Repository.Repositories
 
         public bool Alterar(Categoria categoria)
         {
+            categoria.RegistroAtivo = true;
             context.Categorias.Update(categoria);
             return context.SaveChanges() == 1;
         }
@@ -52,7 +53,7 @@ namespace Repository.Repositories
         public List<Categoria> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string ordem)
         {
             var query = context.Categorias
-                .Where(x => x.Nome.Contains(busca))
+                .Where(x => x.RegistroAtivo && x.Nome.Contains(busca))
                 .AsQueryable();
 
 

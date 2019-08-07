@@ -35,23 +35,30 @@ namespace View.Controllers
         /// <returns></returns>
         [HttpGet, Route("categoria/obtertodos")]
         public JsonResult ObterTodos(
-            string busca = "", int quantidade = 10, int pagina = 0, string colunaOrdem = "nome", string ordem = "ASC")
+            Dictionary<string, string> search, int quantidade = 10, int pagina = 0, string colunaOrdem = "nome", string ordem = "ASC")
         {
-
+            string busca = search["value"] == null ? "" : search["value"];
+            
             List<Categoria> categorias = repository.ObterTodos(quantidade, pagina, busca, colunaOrdem, ordem);
-            return Json(categorias);
+            return Json(new { data = categorias });
+        }
+
+        [HttpGet, Route("categoria/obterpeloid")]
+        public JsonResult ObterPeloId(int id)
+        {
+            return Json(repository.ObterPeloId(id));
         }
 
         [HttpPost]
-        public JsonResult Cadastrar([FromBody]Categoria categoria)
+        public JsonResult Cadastrar([FromForm]Categoria categoria)
         {
             int id = repository.Inserir(categoria);
             var retorno = new { id };
             return Json(retorno);
         }
 
-        [HttpPost]
-        public JsonResult Alterar([FromBody]Categoria categoria)
+        [HttpPost, Route("categoria/alterar")]
+        public JsonResult Alterar([FromForm]Categoria categoria)
         {
             bool alterado = repository.Alterar(categoria);
             var resultado = new { status = alterado };

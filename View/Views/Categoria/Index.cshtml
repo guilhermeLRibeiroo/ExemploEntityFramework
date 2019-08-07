@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@section Scripts{
+<script src="~/js/categorias/categoria-index.js"></script>
+}
+
+<h4 class="text-center mt-3">Lista de Categorias</h4>
+
+<button class="btn btn-primary" data-target="#modal-categoria" data-toggle="modal">Nova Categoria</button>
+
+<table class="table table-bordered table-hover table-striped" id="categoria-index">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+</table>
+
+<partial name="ModalCadastro.cshtml" />
