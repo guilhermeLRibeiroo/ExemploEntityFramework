@@ -11,7 +11,7 @@ namespace Repository.Interfaces
 
         bool Alterar(Peca peca);
 
-        List<Peca> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string coluna);
+        List<Peca> ObterTodos();
 
         Peca ObterPeloId(int id);
 

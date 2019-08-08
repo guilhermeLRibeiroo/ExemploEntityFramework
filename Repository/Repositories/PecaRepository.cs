@@ -2,34 +2,57 @@ using Model;
 using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace Repository.Repositories{
+namespace Repository.Repositories
+{
     public class PecaRepository : IPecaRepository
     {
+        public SystemContext context;
+
+        public PecaRepository(SystemContext context)
+        {
+            this.context = context;
+        }
+
         public bool Alterar(Peca peca)
         {
-            throw new NotImplementedException();
+            peca.RegistroAtivo = true;
+            context.Pecas.Update(peca);
+            return context.SaveChanges() == 1;
         }
 
         public bool Apagar(int id)
         {
-            throw new NotImplementedException();
+            var peca = context.Pecas.FirstOrDefault(x => x.Id == id);
+
+            if (peca == null)
+                return false;
+
+            peca.RegistroAtivo = false;
+
+            context.Pecas.Update(peca);
+
+            return context.SaveChanges() == 1;
         }
 
         public int Inserir(Peca peca)
         {
-            throw new NotImplementedException();
+            peca.RegistroAtivo = true;
+            context.Pecas.Add(peca);
+            context.SaveChanges();
+            return peca.Id;
         }
 
         public Peca ObterPeloId(int id)
         {
-            throw new NotImplementedException();
+            return context.Pecas.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Peca> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string ordem)
+        public List<Peca> ObterTodos()
         {
-            throw new NotImplementedException();
+            return context.Pecas.Where(x => x.RegistroAtivo).ToList();
         }
     }
 }

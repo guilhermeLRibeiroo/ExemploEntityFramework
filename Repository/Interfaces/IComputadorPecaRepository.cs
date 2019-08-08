@@ -7,14 +7,13 @@ namespace Repository.Interfaces
 {
     public interface IComputadorPecaRepository
     {
-        int Inserir(ComputadorPeca computadorPeca);
+       
+        int Relacionar(ComputadorPeca computadorPeca);
 
-        bool Alterar(ComputadorPeca computadorPeca);
+        bool Apagar(int idComputador);
 
-        List<ComputadorPeca> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string coluna);
+        List<ComputadorPeca> ObterTodosPeloIdComputador(int idComputador);
 
-        ComputadorPeca ObterPeloId(int id);
-
-        bool Apagar(int id);
+        ComputadorPeca ObterPeloId(int idComputador);
     }
 }

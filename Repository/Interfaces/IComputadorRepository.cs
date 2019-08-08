@@ -11,7 +11,7 @@ namespace Repository.Interfaces
 
         bool Alterar(Computador computador);
 
-        List<Computador> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string coluna);
+        List<Computador> ObterTodos();
 
         Computador ObterPeloId(int id);
 

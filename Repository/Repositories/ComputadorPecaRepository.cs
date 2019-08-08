@@ -2,32 +2,42 @@ using Model;
 using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Repository.Repositories{
     public class ComputadorPecaRepository : IComputadorPecaRepository
     {
-        public bool Alterar(ComputadorPeca computadorPeca)
+        SystemContext context;
+
+        public ComputadorPecaRepository(SystemContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
         }
 
-        public bool Apagar(int id)
+        public bool Apagar(int idComputador)
         {
-            throw new NotImplementedException();
+            var computadorPeca = context.ComputadoresPecas.FirstOrDefault(x => x.Id == idComputador);
+
+            if (computadorPeca == null)
+                return false;
+
+            computadorPeca.RegistroAtivo = false;
+            context.ComputadoresPecas.Update(computadorPeca);
+            return context.SaveChanges() == 1;
         }
 
-        public int Inserir(ComputadorPeca computadorPeca)
+        public ComputadorPeca ObterPeloId(int idComputador)
         {
-            throw new NotImplementedException();
+            return context.ComputadoresPecas.FirstOrDefault(x => x.Id == idComputador);
         }
 
-        public ComputadorPeca ObterPeloId(int id)
+        public List<ComputadorPeca> ObterTodosPeloIdComputador(int idComputador)
         {
-            throw new NotImplementedException();
+            return context.ComputadoresPecas.Where(x => x.IdComputador == idComputador).ToList();
         }
 
-        public List<ComputadorPeca> ObterTodos(int quantidade, int pagina, string busca, string colunaOrdem, string ordem)
+        public int Relacionar(ComputadorPeca computadorPeca)
         {
             throw new NotImplementedException();
         }
