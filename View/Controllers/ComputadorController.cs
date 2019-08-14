@@ -47,7 +47,7 @@ namespace View.Controllers
         [HttpGet, Route("obtertodos")]
         public ActionResult ObterTodos()
         {
-            return Json(repository.ObterTodos());
+            return Json(new { data = repository.ObterTodos() });
         }
 
         [HttpGet,Route("obterpeloid")]
@@ -62,6 +62,18 @@ namespace View.Controllers
         [HttpGet, Route("cadastro")]
         public ActionResult Cadastro()
         {
+            return View();
+        }
+
+        [HttpGet, Route("editar")]
+        public ActionResult Editar(int id)
+        {
+            var computador = repository.ObterPeloId(id);
+
+            if (computador == null)
+                return RedirectToAction("Index");
+
+            ViewBag.Computador = computador;
             return View();
         }
     }

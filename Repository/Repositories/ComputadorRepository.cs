@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Model;
 using Repository.Interfaces;
 using System;
@@ -46,12 +47,17 @@ namespace Repository.Repositories{
 
         public Computador ObterPeloId(int id)
         {
-            return context.Computadores.FirstOrDefault(x => x.Id == id);
+            return context.Computadores
+                .Include(x => x.Categoria)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public List<Computador> ObterTodos()
         {
-            return context.Computadores.Where(x => x.RegistroAtivo).ToList();
+            return context.Computadores
+                .Include(x => x.Categoria)
+                .Where(x => x.RegistroAtivo)
+                .ToList();
         }
     }
 }

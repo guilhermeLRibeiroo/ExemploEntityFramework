@@ -5,15 +5,21 @@
 
 <h3>Lista de Computadores</h3>
 
-<a class="btn btn-primary" href="@Url.Action("Cadastro")">Novo Computador</a>
+<a class="btn btn-primary float-right mb-3" href="@Url.Action("Cadastro")">Novo Computador</a>
 
-<table class="table table-bordered table-hover table-striped mt-3">
+<table class="table table-bordered table-hover table-striped mt-3"
+       id="computador-index">
     <thead>
         <tr>
             <th>Código</th>
+            <th>Categoria</th>
             <th>Nome</th>
             <th>Valor</th>
             <th>Ação</th>
         </tr>
     </thead>
 </table>
+
+@section Scripts{ 
+    <script src="~/js/computadores/computador-index.js"></script>
+}

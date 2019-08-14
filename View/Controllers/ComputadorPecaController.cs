@@ -40,7 +40,7 @@ namespace View.Controllers
         [HttpGet, Route("obtertodos")]
         public JsonResult ObterTodos(int id)
         {
-            return Json(repository.ObterTodosPeloIdComputador(id));
+            return Json(new { data = repository.ObterTodosPeloIdComputador(id) });
         }
     }
 }
